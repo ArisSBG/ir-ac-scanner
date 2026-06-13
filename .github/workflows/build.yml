@@ -19,14 +19,14 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Rendre gradlew exécutable
-        run: chmod +x ./gradlew || true
+      - name: Installer Gradle et générer le wrapper
+        uses: gradle/actions/setup-gradle@v3
 
-      - name: Générer le wrapper Gradle si absent
-        run: gradle wrapper --gradle-version 8.2 || true
+      - name: Générer le wrapper Gradle
+        run: gradle wrapper --gradle-version 8.4
 
       - name: Build APK debug
-        run: ./gradlew assembleDebug
+        run: ./gradlew assembleDebug --no-daemon
 
       - name: Upload de l'APK
         uses: actions/upload-artifact@v4
