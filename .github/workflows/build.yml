@@ -19,10 +19,12 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Installer Gradle et générer le wrapper
+      - name: Installer Gradle 8.4 (compatible AGP 8.2 / Kotlin 1.9.20)
         uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: 8.4
 
-      - name: Générer le wrapper Gradle
+      - name: Générer le wrapper Gradle 8.4
         run: gradle wrapper --gradle-version 8.4
 
       - name: Build APK debug
